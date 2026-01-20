@@ -10,15 +10,15 @@ const allImages = [
 //   { id: 5, category: 'Kitchen', url: 'https://images.unsplash.com/photo-1556909114-44e3e9399a5c', title: 'Middle Class Kitchen' },
 
   // ================= BEDROOM =================
-  { id: 6, category: 'Bedroom', url: '/public/assets/Bedroom/img98.jpg', title: 'Indian Bedroom Setup' },
-  { id: 7, category: 'Bedroom', url: '/public/assets/Bedroom/img101.jpg', title: 'Small Flat Bedroom' },
-  { id: 8, category: 'Bedroom', url: '/public/assets/Bedroom/img104.jpg', title: 'Simple Bedroom Interior' },
-  { id: 9, category: 'Bedroom', url: '/public/assets/Bedroom/img107.jpg', title: 'Indian Family Bedroom' },
-  { id: 10, category: 'Bedroom', url: '/public/assets/Bedroom/img110.jpg', title: 'Comfort Bedroom' },
-  { id: 10, category: 'Bedroom', url: '/public/assets/Bedroom/img113.jpg', title: 'Comfort Bedroom' },
-  { id: 10, category: 'Bedroom', url: '/public/assets/Bedroom/img116.jpg', title: 'Comfort Bedroom' },
-  { id: 10, category: 'Bedroom', url: '/public/assets/Bedroom/img119.jpg', title: 'Comfort Bedroom' },
-  { id: 10, category: 'Bedroom', url: '/public/assets/Bedroom/img125.jpg', title: 'Comfort Bedroom' },
+  { id: 6, category: 'Bedroom', url: '/assets/Bedroom/img98.jpg', title: 'Indian Bedroom Setup' },
+  { id: 7, category: 'Bedroom', url: '/assets/Bedroom/img101.jpg', title: 'Small Flat Bedroom' },
+  { id: 8, category: 'Bedroom', url: '/assets/Bedroom/img104.jpg', title: 'Simple Bedroom Interior' },
+  { id: 9, category: 'Bedroom', url: '/assets/Bedroom/img107.jpg', title: 'Indian Family Bedroom' },
+  { id: 10, category: 'Bedroom', url: '/assets/Bedroom/img110.jpg', title: 'Comfort Bedroom' },
+  { id: 10, category: 'Bedroom', url: '/assets/Bedroom/img113.jpg', title: 'Comfort Bedroom' },
+  { id: 10, category: 'Bedroom', url: '/assets/Bedroom/img116.jpg', title: 'Comfort Bedroom' },
+  { id: 10, category: 'Bedroom', url: '/assets/Bedroom/img119.jpg', title: 'Comfort Bedroom' },
+  { id: 10, category: 'Bedroom', url: '/assets/Bedroom/img125.jpg', title: 'Comfort Bedroom' },
 
   // // ================= LIVING AREA =================
   // { id: 11, category: 'Living', url: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92', title: 'Indian Living Room' },
