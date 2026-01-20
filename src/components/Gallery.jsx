@@ -73,6 +73,8 @@ const allImages = [
   { id: 51, category: 'Bedroom', url: '/assets/Bedroom/new1.jpg', title: 'Indian Master Bedroom' },
   { id: 52, category: 'Bedroom', url: '/assets/Bedroom/new2.jpg', title: 'Small Flat Bedroom' },
   { id: 53, category: 'Bedroom', url: '/assets/Bedroom/new3.jpg', title: 'Simple Indian Bedroom' },
+
+  { id: 54, category: 'Living', url: '/assets/Living/new.jpg', title: 'Family Living Room Setup' },
 ];
 
 /* =======================
