@@ -69,6 +69,10 @@ const allImages = [
   { id: 48, category: 'Balcony', url: '/assets/Balcony/img456.jpg', title: 'Green Balcony Setup' },
   { id: 49, category: 'Balcony', url: '/assets/Balcony/img472.jpg', title: 'Urban Home Balcony' },
   { id: 50, category: 'Balcony', url: '/assets/Balcony/img488.jpg', title: 'Relaxing Balcony Space' },
+
+  { id: 51, category: 'Bedroom', url: '/assets/Bedroom/new1.jpg', title: 'Indian Master Bedroom' },
+  { id: 52, category: 'Bedroom', url: '/assets/Bedroom/new2.jpg', title: 'Small Flat Bedroom' },
+  { id: 53, category: 'Bedroom', url: '/assets/Bedroom/new3.jpg', title: 'Simple Indian Bedroom' },
 ];
 
 /* =======================
