@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Gallery from './components/Gallery';
 import Contact from './components/Contact';
@@ -7,215 +7,207 @@ import {
   ArrowDown,
   Award,
   Users,
-  ShieldCheck
+  ShieldCheck,
+  Zap,
+  MousePointer2,
+  Building2,
+  Gem
 } from 'lucide-react';
 
 function App() {
+  const containerRef = useRef(null);
+  
+  // Smooth Progress Bar logic
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark');
+    // Basic smooth scroll for Safari/Old Browsers
+    window.scrollTo({ top: 0 });
   }, []);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#050505] transition-colors duration-500 selection:bg-blue-600 selection:text-white">
+    <div ref={containerRef} className="min-h-screen bg-[#050505] text-white selection:bg-blue-600 selection:text-white overflow-x-hidden">
+      
+      {/* 1. TOP PROGRESS BAR */}
+      <motion.div className="fixed top-0 left-0 right-0 h-1 bg-blue-600 origin-left z-[1000]" style={{ scaleX }} />
+
       <Navbar />
 
-      {/* ================= HERO SECTION ================= */}
-      <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
-        {/* Background Watermark */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-[0.02] pointer-events-none">
-          <h2 className="text-[30vw] font-black tracking-tighter text-white">
-            ARCH
-          </h2>
-        </div>
-
+      {/* 2. HERO SECTION - WITH PARALLAX & GLOW */}
+      <section className="relative min-h-[100vh] flex items-center justify-center px-6 overflow-hidden pt-20">
+        {/* Animated Background Blur */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-600/20 blur-[120px] rounded-full animate-pulse" />
+        
         <div className="max-w-7xl mx-auto text-center z-10">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           >
-            <span className="text-blue-600 font-black text-xs uppercase tracking-[0.6em] block mb-6">
-              Established 2024 • Motihari
-            </span>
+            <motion.span 
+              initial={{ letterSpacing: "0.2em", opacity: 0 }}
+              animate={{ letterSpacing: "0.6em", opacity: 1 }}
+              className="text-blue-500 font-black text-[10px] md:text-xs uppercase block mb-8"
+            >
+              Visionary Architecture • Motihari
+            </motion.span>
 
-            <h1 className="text-[14vw] md:text-[11vw] font-black tracking-tighter leading-[0.75] text-white mb-8">
+            <h1 className="text-[16vw] md:text-[12vw] font-[1000] tracking-[ -0.05em] leading-[0.8] mb-10 group">
               DESIGN <br />
-              <span className="italic text-blue-600">DESIGN TECH</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-400 to-blue-600 bg-[length:200%_auto] animate-gradient-flow italic">TECH</span>
             </h1>
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.6, duration: 1 }}
-            className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto leading-relaxed mb-12"
-          >
-            India’s trusted 3D visualization & interior design studio.
-            We transform flats, homes, and offices into
-            <span className="text-white"> functional living spaces.</span>
-          </motion.p>
-
           <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ repeat: Infinity, duration: 2 }}
-            className="flex flex-col items-center gap-2 opacity-40"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 }}
+            className="flex flex-col md:flex-row items-center justify-center gap-6"
           >
-            <span className="text-[10px] uppercase tracking-widest font-black">
-              Scroll Down
-            </span>
-            <ArrowDown size={16} />
+            <p className="text-zinc-400 text-sm md:text-lg max-w-xl leading-relaxed font-medium">
+              We don't just build structures; we sculpt <span className="text-white">emotions</span> into 3D reality. Bihar's leading edge in premium <span className="border-b border-blue-600">interior visualization.</span>
+            </p>
+          </motion.div>
+
+          <motion.div 
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 2.5 }}
+            className="mt-16 opacity-30 flex flex-col items-center gap-3"
+          >
+            <div className="w-[1px] h-16 bg-gradient-to-b from-blue-600 to-transparent" />
+            <span className="text-[9px] uppercase tracking-[0.4em] font-black">Explore Studio</span>
           </motion.div>
         </div>
       </section>
 
-      {/* ================= ABOUT SECTION ================= */}
-      <section id="about" className="py-32 px-6 bg-zinc-900/30">
-        <div className="max-w-7xl mx-auto space-y-24">
-
-          {/* STORY */}
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
-            {/* TEXT */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+      {/* 3. EXPERIENCE / ABOUT SECTION */}
+      <section id="about" className="py-24 md:py-40 px-6 relative border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-16 md:gap-32 items-center">
+            
+            {/* STICKY CONTENT */}
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="space-y-8"
+              className="space-y-10"
             >
-              <h3 className="text-xs font-black uppercase tracking-[0.4em] text-blue-600">
-                About Us
-              </h3>
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-blue-600/10 border border-blue-500/20">
+                <Zap size={14} className="text-blue-500" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-blue-500">The Design Tech Philosophy</span>
+              </div>
 
-              <h2 className="text-4xl md:text-5xl font-black text-white leading-tight tracking-tight">
-                Indian Homes.<br />
-                <span className="italic text-blue-500">Smart Design.</span>
+              <h2 className="text-5xl md:text-7xl font-black leading-[0.9] tracking-tighter text-white">
+                WE CRAFT <br />
+                <span className="italic opacity-40 italic">LEGACIES.</span>
               </h2>
 
-              <p className="text-zinc-400 text-lg leading-relaxed">
-                Design Tech is a Motihari-based architecture & interior studio
-                focused on modern Indian living. We design spaces that are
-                beautiful, practical, and budget-friendly.
-              </p>
+              <div className="space-y-6 text-zinc-400 text-base md:text-lg leading-relaxed font-medium">
+                <p>
+                  At <span className="text-white">Design Tech</span>, we understand that an Indian home is a sanctuary. Whether it's a compact 2BHK in Motihari or a luxury villa, our mission is to blend Vastu science with high-end global aesthetics.
+                </p>
+                <p className="text-zinc-500">
+                  Our portfolio spans 100+ successfully delivered dreams, focusing on <span className="text-blue-400">Precision</span>, <span className="text-blue-400">Durability</span>, and <span className="text-blue-400">Modernity</span>.
+                </p>
+              </div>
 
-              <p className="text-zinc-500 leading-relaxed">
-                From 2BHK flats and bedrooms to kitchens, offices,
-                and showrooms — our designs follow Indian lifestyle,
-                Vastu principles, and real-world usability.
-              </p>
-
-              {/* STATS */}
-              <div className="grid grid-cols-3 gap-6 pt-6">
-                <div>
-                  <p className="text-3xl font-black text-white">100+</p>
-                  <p className="text-xs uppercase tracking-widest text-zinc-500">
-                    Projects
-                  </p>
-                </div>
-                <div>
-                  <p className="text-3xl font-black text-white">10+</p>
-                  <p className="text-xs uppercase tracking-widest text-zinc-500">
-                    Cities
-                  </p>
-                </div>
-                <div>
-                  <p className="text-3xl font-black text-white">5+</p>
-                  <p className="text-xs uppercase tracking-widest text-zinc-500">
-                    Years
-                  </p>
-                </div>
+              <div className="grid grid-cols-2 gap-8 py-8 border-y border-white/5">
+                {[
+                  { label: "Vastu Integrated", icon: <ShieldCheck size={20} /> },
+                  { label: "3D Photorealism", icon: <Zap size={20} /> },
+                  { label: "Turnkey Services", icon: <Building2 size={20} /> },
+                  { label: "Luxury Finishes", icon: <Gem size={20} /> }
+                ].map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-4 group cursor-default">
+                    <div className="p-3 bg-zinc-900 rounded-2xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                      {feature.icon}
+                    </div>
+                    <span className="text-[11px] font-black uppercase tracking-widest text-zinc-300 group-hover:text-white transition-colors">{feature.label}</span>
+                  </div>
+                ))}
               </div>
             </motion.div>
 
-            {/* IMAGE GRID */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="grid grid-cols-2 gap-6"
-            >
-              <img
-                src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c"
-                className="rounded-3xl aspect-[4/5] object-cover"
-                alt="Indian Flat Interior"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1615874959474-d609969a20ed"
-                className="rounded-3xl aspect-square object-cover"
-                alt="Bedroom Interior"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1600210492493-0946911123ea"
-                className="rounded-3xl aspect-square object-cover"
-                alt="Living Room"
-              />
-              <img
-                src="https://images.unsplash.com/photo-1556911220-bff31c812dba"
-                className="rounded-3xl aspect-[4/5] object-cover"
-                alt="Kitchen Interior"
-              />
-            </motion.div>
-          </div>
-
-          {/* PROCESS */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center space-y-12"
-          >
-            <h3 className="text-sm font-black uppercase tracking-[0.4em] text-blue-600">
-              Our Process
-            </h3>
-
-            <div className="grid md:grid-cols-4 gap-8">
-              {[
-                { step: '01', title: 'Consultation' },
-                { step: '02', title: '3D Design' },
-                { step: '03', title: 'Execution' },
-                { step: '04', title: 'Final Delivery' },
-              ].map(item => (
-                <div
-                  key={item.step}
-                  className="p-8 rounded-3xl bg-zinc-900/60 border border-zinc-800 hover:border-blue-600 transition"
-                >
-                  <p className="text-blue-600 font-black text-xl mb-4">
-                    {item.step}
-                  </p>
-                  <p className="text-white font-bold">
-                    {item.title}
-                  </p>
+            {/* INTERACTIVE IMAGE CARDS */}
+            <div className="grid grid-cols-2 gap-4 h-fit">
+              <motion.div 
+                whileHover={{ y: -10 }}
+                className="space-y-4 pt-12"
+              >
+                <div className="rounded-[2rem] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700">
+                  <img src="/assets/3D Elevation Design/img74.jpg" alt="Work" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
                 </div>
-              ))}
+                <div className="rounded-[2rem] overflow-hidden border border-white/10 h-40">
+                  <img src="/assets/Bedroom/new2.jpg" alt="Work" className="w-full h-full object-cover" />
+                </div>
+              </motion.div>
+              <motion.div 
+                whileHover={{ y: 10 }}
+                className="space-y-4"
+              >
+                <div className="rounded-[2rem] overflow-hidden border border-white/10 h-40">
+                  <img src="/assets/Kitchen/new_3.jpeg" alt="Work" className="w-full h-full object-cover" />
+                </div>
+                <div className="rounded-[2rem] overflow-hidden border border-white/10 grayscale hover:grayscale-0 transition-all duration-700">
+                  <img src="/assets/3D Elevation Design/new_7.jpeg" alt="Work" className="w-full h-full object-cover hover:scale-110 transition-transform duration-700" />
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* ================= GALLERY ================= */}
-      <main id="gallery">
-        <div className="pt-20 px-6 text-center">
-          <h2 className="text-xs font-black uppercase tracking-[0.5em] text-zinc-600 mb-4">
-            Portfolio
-          </h2>
-          <h3 className="text-4xl font-black tracking-tighter text-white">
-            Visual Masterpieces
-          </h3>
+      {/* 4. GALLERY REVEAL */}
+      <section id="gallery" className="bg-[#080808] py-20">
+        <div className="max-w-7xl mx-auto px-6 mb-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            className="flex flex-col md:flex-row md:items-end justify-between gap-8"
+          >
+            <div>
+              <span className="text-blue-500 font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Visual Archives</span>
+              <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-none">THE <span className="text-blue-600">COLLECTION.</span></h2>
+            </div>
+            <p className="text-zinc-500 max-w-xs text-sm font-medium">A curated selection of over 100+ living spaces, kitchens, and architectural elevations.</p>
+          </motion.div>
         </div>
         <Gallery />
-      </main>
+      </section>
 
       <Contact />
 
-      {/* ================= BACK TO TOP ================= */}
-      <button
+      {/* 5. BACK TO TOP - MAGNETIC EFFECT */}
+      <motion.button
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 w-14 h-14 bg-blue-600 text-white rounded-2xl
-        flex items-center justify-center shadow-2xl hover:-translate-y-2 transition z-50"
+        whileHover={{ scale: 1.1, y: -5 }}
+        whileTap={{ scale: 0.9 }}
+        className="fixed bottom-8 right-8 w-16 h-16 bg-blue-600 text-white rounded-[1.5rem] flex items-center justify-center shadow-[0_20px_40px_rgba(37,99,235,0.3)] z-[100] transition-colors hover:bg-white hover:text-blue-600"
       >
-        <ArrowDown size={20} className="rotate-180" />
-      </button>
+        <ArrowDown size={24} className="rotate-180" />
+      </motion.button>
+
+      {/* FOOTER MINI */}
+      <div className="py-10 text-center border-t border-white/5 bg-black">
+         <p className="text-[10px] font-black uppercase tracking-[1em] text-zinc-800">Designed for Excellence</p>
+      </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes gradient-flow {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .animate-gradient-flow {
+          animation: gradient-flow 6s ease infinite;
+        }
+      `}} />
     </div>
   );
 }

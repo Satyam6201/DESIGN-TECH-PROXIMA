@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaEye, FaDownload, FaFilePdf } from 'react-icons/fa';
+import { FaEye, FaDownload, FaFilePdf} from 'react-icons/fa';
+import { FileText, Eye, Download } from 'lucide-react';
 
 /* =======================
    IMAGE DATA (FIXED IDs + INDIAN STANDARD NAMES)
@@ -175,7 +176,7 @@ const pdfResources = [
     id: 'interior-guide-india',
     title: 'Complete Interior Design Guide (India)',
     file: '/assets/Interiors design.pdf',
-    thumbnail: '/assets/Flat/img74.jpg',
+    thumbnail: '/assets/3D Elevation Design/img74.jpg',
   },
   {
     id: 'Furniture working plan',
@@ -216,7 +217,7 @@ const Gallery = () => {
       : allImages.filter(img => img.category === activeCategory);
 
   return (
-    <section className="min-h-screen bg-gradient-to-b from-white to-gray-100 dark:from-black dark:to-zinc-900 py-20 px-4">
+    <section className="min-h-screen bg-gradient-to-b from-white to-gray-400 dark:from-black dark:to-zinc-900 py-20 px-4">
 
       {/* CATEGORY FILTER */}
       <div className="flex flex-wrap justify-center gap-3 mb-16">
@@ -228,7 +229,7 @@ const Gallery = () => {
             ${
               activeCategory === cat
                 ? 'bg-blue-600 text-white shadow-xl'
-                : 'bg-white dark:bg-zinc-900 border dark:border-zinc-800'
+                : 'bg-gray-700 dark:bg-zinc-900 border dark:border-zinc-800'
             }`}
           >
             {cat}
@@ -266,70 +267,80 @@ const Gallery = () => {
         </AnimatePresence>
       </motion.div>
 
-      {/* PDF SECTION */}
-<section className="max-w-7xl mx-auto mt-32 px-4">
-  <h2 className="text-3xl sm:text-4xl font-extrabold text-center mb-14">
-    Interior Design Resources
-  </h2>
+      <section className="max-w-7xl mx-auto mt-40 px-6 pb-20">
+  <div className="text-center mb-16">
+    <span className="text-blue-500 font-black text-[10px] uppercase tracking-[0.5em] block mb-4">
+      Knowledge Center
+    </span>
+    <h2 className="text-4xl md:text-6xl font-[1000] tracking-tighter text-white">
+      DESIGN <span className="text-blue-600 italic">RESOURCES</span>
+    </h2>
+  </div>
 
-  <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-    {pdfResources.map(pdf => (
-      <div
+  <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+    {pdfResources.map((pdf) => (
+      <motion.div
         key={pdf.id}
-        className="group bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-800
-        rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500"
+        whileHover={{ y: -10 }}
+        className="group bg-[#0f0f0f] border border-white/5 rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 hover:border-blue-600/50"
       >
-        {/* PDF THUMBNAIL */}
-        <div className="relative h-56 overflow-hidden">
+        {/* PDF THUMBNAIL CONTAINER */}
+        <div className="relative h-64 overflow-hidden bg-zinc-800">
           <img
             src={pdf.thumbnail}
             alt={pdf.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
           />
 
-          {/* PDF ICON */}
-          <div className="absolute top-4 left-4 bg-red-600 text-white p-3 rounded-xl shadow-lg">
-            <FaFilePdf size={20} />
+          {/* PDF FLOATING BADGE */}
+          <div className="absolute top-6 left-6 bg-red-600 text-white p-3.5 rounded-2xl shadow-[0_10px_20px_rgba(220,38,38,0.3)]">
+            <FileText size={22} strokeWidth={2.5} />
           </div>
+          
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0f0f0f] to-transparent opacity-60" />
         </div>
 
-        {/* CONTENT */}
-        <div className="p-6">
-          <p className="text-[11px] uppercase tracking-widest text-gray-500 mb-2">
-            PDF Resource
-          </p>
+        {/* CONTENT AREA */}
+        <div className="p-8">
+          <div className="flex items-center gap-2 mb-3">
+            <div className="w-8 h-[1px] bg-blue-600" />
+            <p className="text-[10px] uppercase tracking-[0.3em] font-black text-blue-500">
+              Free Guide
+            </p>
+          </div>
 
-          <h3 className="text-lg font-bold leading-snug mb-6">
+          <h3 className="text-xl md:text-2xl font-black leading-tight text-white mb-8 group-hover:text-blue-400 transition-colors">
             {pdf.title}
           </h3>
 
           {/* ACTION BUTTONS */}
-          <div className="flex gap-4">
-            {/* VIEW */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* VIEW BUTTON */}
             <a
               href={pdf.file}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2
-              rounded-xl border border-blue-600 text-blue-600
-              py-2 font-semibold hover:bg-blue-600 hover:text-white transition"
+              className="flex-1 flex items-center justify-center gap-3
+              rounded-2xl border border-white/10 text-white
+              py-4 text-xs font-black uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-500"
             >
-              <FaEye /> View
+              <Eye size={16} /> View
             </a>
 
-            {/* DOWNLOAD */}
+            {/* DOWNLOAD BUTTON */}
             <a
               href={pdf.file}
               download
-              className="flex-1 flex items-center justify-center gap-2
-              rounded-xl bg-blue-600 text-white py-2 font-semibold
-              hover:bg-blue-700 transition"
+              className="flex-1 flex items-center justify-center gap-3
+              rounded-2xl bg-blue-600 text-white py-4 text-xs font-black
+              uppercase tracking-widest hover:bg-blue-700 hover:shadow-[0_10px_20px_rgba(37,99,235,0.3)] transition-all duration-500"
             >
-              <FaDownload /> Download
+              <Download size={16} /> Get PDF
             </a>
           </div>
         </div>
-      </div>
+      </motion.div>
     ))}
   </div>
 </section>

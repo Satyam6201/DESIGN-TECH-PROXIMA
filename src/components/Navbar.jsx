@@ -29,7 +29,7 @@ const Navbar = () => {
         <a href="/" className="flex items-center gap-3 group">
           <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-blue-600 p-0.5 group-hover:scale-110 transition-transform duration-500">
             <img 
-              src="/assets/IMG_2.png" 
+              src="/assets/1764092824368.jpg.jpeg" 
               alt="Design Tech Logo" 
               className="w-full h-full object-cover rounded-full"
             />
