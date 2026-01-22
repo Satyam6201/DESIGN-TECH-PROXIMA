@@ -8,9 +8,9 @@ import { FileText, Eye, Download } from 'lucide-react';
 ======================= */
 const allImages = [
   // ===== KITCHEN =====
-  { id: 1, category: 'Kitchen', url: '/assets/Kitchen/img1.jpg', title: 'Premium Indian Modular Kitchen Design' },
-  { id: 2, category: 'Kitchen', url: '/assets/Kitchen/img2.jpg', title: 'Smart Small Flat Kitchen Layout' },
-  { id: 3, category: 'Kitchen', url: '/assets/Kitchen/img3.jpg', title: 'Middle-Class Indian Kitchen Interior' },
+  { id: 1, category: 'Kitchen', url: '/assets/Kitchen/img292.jpg', title: 'Premium Indian Modular Kitchen Design' },
+  { id: 2, category: 'Kitchen', url: '/assets/Kitchen/new_1.jpeg', title: 'Smart Small Flat Kitchen Layout' },
+  { id: 3, category: 'Kitchen', url: '/assets/Kitchen/new_6.jpeg', title: 'Middle-Class Indian Kitchen Interior' },
   { id: 4, category: 'Kitchen', url: '/assets/Kitchen/img_.jpg', title: 'Compact Indian Kitchen Space Planning' },
   { id: 5, category: 'Kitchen', url: '/assets/Kitchen/img136.jpg', title: 'Modern Indian Modular Kitchen' },
 
