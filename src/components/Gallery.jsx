@@ -153,6 +153,11 @@ const allImages = [
 { id: 114, category: 'Office', url: '/assets/Office/new_5.jpeg', title: 'Executive Office Meeting Space' },
 { id: 115, category: 'Office', url: '/assets/Office/new_5.jpeg', title: 'Premium Corporate Office Interior' },
 
+{ id: 116, category: 'Office', url: '/assets/jewll 1.png', title: 'Modern Startup Office Interior' },
+{ id: 117, category: 'Office', url: '/assets/jewll 2.png', title: 'Professional Office Meeting Room' },
+{ id: 118, category: 'Office', url: '/assets/jewll 3.png', title: 'Corporate Office Interior Design' },
+{ id: 119, category: 'Office', url: '/assets/jewll 4.png', title: 'IT Office Workspace Design' },
+
 ];
 
 
