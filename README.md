@@ -1,16 +1,46 @@
-# React + Vite
+# 🏛️ DESIGN TECH PROXIMA
+**The Future of Architectural Visualization in Motihari.**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge&logo=vercel)](https://design-tech-psi.vercel.app)
+[![Portfolio](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/Satyam6201/DESIGN-TECH-PROXIMA)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Overview
+**Design Tech Proxima** is a high-end, luxury architecture portfolio built for Bihar's leading 3D visualization studio. It features a premium dark-mode UI, glassmorphism aesthetics, and smooth scroll-triggered animations to showcase 3D elevations, modular kitchens, and master interiors.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Key Features
+* **💎 Luxury UI:** Modern dark theme with blue neon accents and glassmorphism.
+* **📱 Fully Responsive:** Seamless experience across Mobile, Tablet, and Desktop.
+* **🖼️ 3D Gallery:** Categorized showcase of photorealistic architectural renders.
+* **⚡ Interactive Contact:** Direct WhatsApp integration with brand-themed social grids.
+* **🎭 Framer Motion:** Staggered reveals, parallax effects, and smooth scroll-triggered animations.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+* **Core:** React.js + Vite
+* **Styling:** Tailwind CSS
+* **Animations:** Framer Motion
+* **Icons:** Lucide React & React Icons
+* **Deployment:** Vercel
+
+---
+
+## 📂 Project Structure
+```text
+DESIGN-TECH-PROXIMA/
+├── public/                 # Static assets (Favicons, etc.)
+├── src/
+│   ├── assets/             # 📸 High-res 3D Renders (Elevation, Kitchen, Bedroom)
+│   ├── components/
+│   │   ├── Navbar.jsx      # 🧭 Smooth navigation
+│   │   ├── Gallery.jsx     # 🖼️ Interactive Image Masonry
+│   │   ├── Contact.jsx     # 📞 Premium footer & Social links
+│   ├── App.jsx             # 🏗️ Main Layout & Scroll Logic
+│   ├── index.css           # 🎨 Global styles & Tailwind Config
+│   └── main.jsx            # 🚀 Application Entry Point
+├── tailwind.config.js      # ⚙️ Custom theme & color palette
+└── package.json            # 📦 Dependencies & Scripts
